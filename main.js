@@ -17,31 +17,41 @@ const itunesApp = {
         return response.json()
       })
       .then(data => {
-        console.log(data)
         if(data.resultCount === 0){
           alert('No results found for this artist/band. Try again.')
           location.reload()
         }else{
           const entryPoint = document.getElementById('container')
-          let song1 = data.results[0]
-          console.log(song1)
-          let song1Data = `<div id="songDiv" class="songDivs">
-                  <img src="${song1.artworkUrl100}" alt="Song Picture"/>
-                  <h3 id="songTitleData">${song1.trackName}</h3>
-                  <h4 id="artistAlbumData">${song1.collectionName}</h4>
-                  <h2 id="artistNameData">${song1.artistName}</h2>
-                  <audio src="${song1.previewUrl}" controls autoplay></audio>
-                </div>`
-        
-          // let allCustomers = customers.map((customer) => customerToHTML(customer)).join('\n');
+          console.log(data)
+          console.log(data.results)
 
-          entryPoint.innerHTML = song1Data
-        
-        // console.log(data.results.map( (song, index) =>{
-        //   return `<div id="${index}">
-        //             <img src="${song.}"
-        //           </div>`
-        // }))
+          function addBtnEventListener(){
+            let buttonsPlay = document.querySelectorAll(".playBtn")
+            for(let button of buttonsPlay){
+              button.addEventListener( 'click', (event) =>{
+                event.preventDefault()
+                addAudioSource(button.dataset.id)
+                //add addAudioSource() func
+              })
+            }
+          }
+          
+
+          function dataToHTML (song){
+//dataset.id 
+            addBtnEventListener()
+            return `<div id="songDiv" class="songDivs">
+                  <img src="${song.artworkUrl100}" alt="Song Picture"/>
+                  <h3 id="songTitleData">${song.trackName}</h3>
+                  <h4 id="artistAlbumData">${song.collectionName}</h4>
+                  <h2 id="artistNameData">${song.artistName}</h2>
+                  <button class="playBtn" data-id=${song.trackId} type="button">Play Now</button>
+                  <audio src="${song.previewUrl}" controls></audio>
+                </div>`
+          }
+          let allSongs = data.results.map((song) => dataToHTML(song)).join('\n');
+
+          entryPoint.innerHTML = allSongs
         }
       })
       
@@ -63,4 +73,3 @@ const itunesApp = {
   //refactor into OOP so that each function only perfoms one action
 
  
-  
