@@ -17,35 +17,53 @@ const itunesApp = {
         return response.json()
       })
       .then(data => {
-        console.log(data)
         if(data.resultCount === 0){
           alert('No results found for this artist/band. Try again.')
           location.reload()
         }else{
           const entryPoint = document.getElementById('container')
-          let song1 = data.results[0]
-          console.log(song1)
-          let song1Data = `<div id="songDiv" class="songDivs">
-                  <img src="${song1.artworkUrl100}" alt="Song Picture"/>
-                  <h3 id="songTitleData">${song1.trackName}</h3>
-                  <h4 id="artistAlbumData">${song1.collectionName}</h4>
-                  <h2 id="artistNameData">${song1.artistName}</h2>
-                  <audio src="${song1.previewUrl}" controls autoplay></audio>
-                </div>`
-        
-          // let allCustomers = customers.map((customer) => customerToHTML(customer)).join('\n');
+          console.log(data)
+          console.log(data.results)
+          
 
-          entryPoint.innerHTML = song1Data
-        
-        // console.log(data.results.map( (song, index) =>{
-        //   return `<div id="${index}">
-        //             <img src="${song.}"
-        //           </div>`
-        // }))
-        }
-      })
+          function dataToHTML (song){
+            return `<div class="songDiv" class="songDivs">
+                  <img src="${song.artworkUrl100}" alt="Song Picture"/>
+                  <h2 class="songTitleData">${song.trackName}</h2>
+                  <h3 class="artistNameData">${song.artistName}</h3>
+                  <h4 class="artistAlbumData">${song.collectionName}</h4>
+                  <button class="playBtn" data-id="${song.trackId}" data-audio="${song.previewUrl}" data-artist="${song.artistName}" data-song="${song.trackName}"type="button">Play Now</button>
+                </div>`
+          }
+          
+          let allSongs = data.results.map((song) => dataToHTML(song)).join('\n')
+
+          entryPoint.innerHTML = allSongs
+
+          // this.addAudioSource()
+      } 
+    })
       
   },
+  // addAudioSource: function () {
+  //   let buttonsPlay = document.querySelectorAll(".playBtn")
+  //   for (let button of buttonsPlay) {
+  //     button.addEventListener('click', (event) => {
+  //       event.preventDefault()
+  //       let audioSrc = event.target.dataset.audio
+  //       console.log(audioSrc)
+  //       //uncaught in promise type errorthis.addAudioSource is not a function 
+     
+  //       //if my code did work lol 
+  //       //document.querySelector('figure').classList.remove('hidden')
+  //       // document.querySelector('audio').src = audioSrc
+  //       // let artName = event.target.dataset.artist
+  //       // let musicName = event.target.dataset.trackName
+  //       // document.querySelector('figcaption').innerText = `Now Playing: ${artName} - ${musicName}`
+
+  //     })
+  //   }
+  // },
   addEventListener: function () {
     const form = document.getElementById('artistSearch')
     form.addEventListener('submit', this.getSongs) 
@@ -56,11 +74,24 @@ const itunesApp = {
 
   itunesApp.addEventListener()
 
+//Add the event listeners to the button
+//using the unique data-id on each playBtn, send the audio src (song.previewUrl) to the addAudioSrc()
+//function addAudioSrc()
+
+
   //WIP 
-  //display all songs
   //audio
   //css 
   //refactor into OOP so that each function only perfoms one action
 
  
-  
+//code that may or may not work but not using this atm
+// function addBtnEventListener(){
+//   let buttonsPlay = document.querySelectorAll(".playBtn")
+//   for(let button of buttonsPlay){
+//     button.addEventListener( 'click', (event) =>{
+//       event.preventDefault()
+//       addAudioSource(button.dataset.id)
+//     })
+//   }
+// }

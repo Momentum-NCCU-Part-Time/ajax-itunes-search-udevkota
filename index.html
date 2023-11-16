@@ -3,18 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Manrope&family=Nunito+Sans:opsz@6..12&family=Raleway&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="icons8-music-note-48.png"/>
+  <link rel="stylesheet" href="style.css"/>
   <script src="main.js" defer></script>
   <title>Music Search</title>
+  
 </head>
 <body>
     <h1>Really Awesome Music Site</h1>
-    <!-- audio hidden here  -->
-    <hr />
+    <!-- audio hidden here  song.previewUrl-->
+    <figure id="nowPlaying" class="hidden">
+      <audio src="" controls autoplay></audio>
+      <figcaption id="trackName"></figcaption>
+    </figure>
+    
+    
     <form id="artistSearch">
       <input id="artistName" type="text" placeholder="Search for Artist/Band" required autofocus/>
       <input id="submitInput" type="submit" value="Search">
     </form>
-    <hr />
+    
     <div id="container"></div>
 </body>
 </html>
+   <!-- `<audio src="${song.previewUrl}"controls autoplay></audio>`
+      `<span>Now Playing: ${song.artistName} - ${song.trackName}</span>` -->
