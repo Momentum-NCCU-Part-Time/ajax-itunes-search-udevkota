@@ -1,0 +1,77 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Barlow', sans-serif;
+  text-align: center;
+}
+
+.hidden{
+  display: none;
+}
+
+h1{
+  text-align: center;
+  padding: 1% 0;
+}
+
+form{
+  text-align: center;
+  display: flex;
+  border-top: 2px solid rgb(7, 7, 7);
+  border-bottom: 1px solid rgb(7, 7, 7);
+  margin: 5%;
+}
+
+#artistName{
+  text-align: left;
+  flex: 1 0 75%;
+  margin: 2% 0 2% 5%;
+}
+input{
+  margin: 3% 5% 3% 1%;
+}
+
+#container{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+ }
+
+.songDiv{
+  flex: 1 0 25%;
+  text-align: center;
+  padding: 1% 3%;
+ }
+
+.songTitleData{
+  font-size: large;
+  padding: 3% 0;
+  font-size: smaller;
+}
+
+.artistNameData{
+ font-size: 2vh;
+ padding-bottom: 2%;
+ color: rgb(12, 61, 248);
+ font-weight:bold;
+  
+}
+
+.artistAlbumData{
+  font-size: 1.5vh;
+  color:  gray; 
+  padding-bottom: 3%;
+  font-style: oblique;
+  font-weight: lighter;
+}
+
+.playBtn{
+  margin-bottom: 25%;
+  display:inline-block;
+  padding: 2%;
+}
+
+.playBtn:hover{
+  background-color: rgb(154, 224, 245);
+}
